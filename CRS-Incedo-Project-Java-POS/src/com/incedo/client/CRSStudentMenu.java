@@ -10,6 +10,12 @@ import com.incedo.service.StudentService;
 
 public class CRSStudentMenu {
 	
+	/**
+	 * runs the client menu for the student
+	 * @param username
+	 * @param password
+	 * @param scan
+	 */
 	public void run(String username, String password, Scanner scan) {
 		StudentInterface stud = new StudentService();
 		int studentId = stud.findStudentId(username, password);
@@ -40,9 +46,11 @@ public class CRSStudentMenu {
 			break;
 		case 4:
 			TreeMap<String, String> grades = stud.viewGrades(studentId);
+			System.out.printf("%-9s%-7s\n", "COURSE", "GRADE");
 			for (String courseCode: grades.keySet()) {
-				System.out.println(courseCode + ": " + grades.get(courseCode));
+				System.out.printf("%-9s%-7s\n", courseCode, grades.get(courseCode));
 			}
+			System.out.printf("\n");
 			break;
 		case 5:
 			System.out.println("Choose 1: Offline Payment or 2: Online Payment");

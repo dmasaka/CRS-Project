@@ -7,10 +7,17 @@ public class Catalog {
 	private String name;
 	private Course[] courses = {new Course(), new Course(), new Course()};
 	
+	/**
+	 * getter for catalogid
+	 * @return int
+	 */
 	public int getCatalogId() {
 		return catalogId;
 	}
 
+	/** setter for catalogid
+	 * @param catalogId
+	 */
 	public void setCatalogId(int catalogId) {
 		this.catalogId = catalogId;
 	}

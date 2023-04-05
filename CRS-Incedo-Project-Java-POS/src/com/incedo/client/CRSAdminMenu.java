@@ -11,6 +11,12 @@ import com.incedo.service.AdminService;
 
 public class CRSAdminMenu {
 
+	/**
+	 * runs the client for the admin menu
+	 * @param username
+	 * @param password
+	 * @param scan
+	 */
 	public void run(String username, String password, Scanner scan) {
 		AdminInterface adm = new AdminService();
 		int adminid = adm.findAdminId(username, password);

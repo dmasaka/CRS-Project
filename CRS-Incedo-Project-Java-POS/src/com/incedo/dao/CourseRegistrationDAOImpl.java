@@ -20,8 +20,8 @@ import com.incedo.utils.DBUtils;
 public class CourseRegistrationDAOImpl implements CourseRegistrationDAOInterface {
 	private static Connection conn = null;
 	private static PreparedStatement stmt = null;
-	private static List<CourseRegistration> couregs = new ArrayList<CourseRegistration>();
 	public List<CourseRegistration> listOfCourses() {
+		List<CourseRegistration> couregs = new ArrayList<CourseRegistration>();
 		try {
 			conn = DBUtils.getConnection();
 			String sql = "select courseregid, coursecode, studentid, grade from courseregisters";
@@ -55,6 +55,7 @@ public class CourseRegistrationDAOImpl implements CourseRegistrationDAOInterface
 	}
 	
 	public List<CourseRegistration> listOfCoursesByStudentId(int studentid) {
+		List<CourseRegistration> couregs = new ArrayList<CourseRegistration>();
 		try {
 			conn = DBUtils.getConnection();
 			String sql = "select courseregid, coursecode, studentid, grade from courseregisters where studentid=?";
@@ -89,6 +90,7 @@ public class CourseRegistrationDAOImpl implements CourseRegistrationDAOInterface
 	}
 	
 	public List<CourseRegistration> listOfCoursesByProfessorId(int professorid) {
+		List<CourseRegistration> couregs = new ArrayList<CourseRegistration>();
 		try {
 			conn = DBUtils.getConnection();
 			String sql = "select courseregid, courses.coursecode, studentid, grade "

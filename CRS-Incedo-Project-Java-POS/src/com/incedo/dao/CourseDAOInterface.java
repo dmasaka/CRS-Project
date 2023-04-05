@@ -12,8 +12,26 @@ import com.incedo.bean.Course;
  *
  */
 public interface CourseDAOInterface {
+	/**
+	 * list all courses
+	 * @return list of courses
+	 */
 	public List<Course> listOfCourses();
+	/**
+	 * adds a course
+	 * @param course
+	 */
 	public void addCourse(Course course);
+	/**
+	 * deletes a course
+	 * @param courseCode
+	 */
 	public void deleteCourse(String courseCode);
+	/**
+	 * adds professor
+	 * @param courseCode
+	 * @param professorid
+	 * @return
+	 */
 	public int addProfessor(String courseCode, int professorid);
 }
