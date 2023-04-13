@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +22,7 @@ import com.incedo.repository.StudentRepository;
  * @author David Masaka
  *
  */
-@CrossOrigin(origins = "http://localhost:8080")
+//@CrossOrigin(origins = "http://localhost:8070")
 @RestController
 @RequestMapping("/students")
 public class StudentController {
@@ -35,6 +35,7 @@ public class StudentController {
 	 */
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
 	public List<Student> getAllStudents(){
+		System.out.println("did this run");
 		return studrepo.findAll();
 	}
 	
