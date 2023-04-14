@@ -12,8 +12,6 @@ import java.util.List;
 
 import com.incedo.bean.Student;
 import com.incedo.constants.SQLConstants;
-import com.incedo.exception.ApprovalNotDone;
-import com.incedo.exception.UserNotFoundException;
 import com.incedo.utils.DBUtils;
 
 /**
@@ -61,7 +59,7 @@ public class StudentDAOImpl implements StudentDAOInterface {
 		return students;
 	}
 	
-	public Student login(String username, String password) throws UserNotFoundException, ApprovalNotDone {
+	public Student login(String username, String password) {
 		// TODO Auto-generated method stub
 		Student student = null;
 		try {
@@ -74,10 +72,11 @@ public class StudentDAOImpl implements StudentDAOInterface {
 				student = new Student(rs.getInt("studentid"), rs.getString("name"), rs.getString("username"),
 						rs.getString("password"), rs.getString("address"), rs.getInt("studentid"),
 						rs.getInt("semesterid"), "");
-				if (rs.getInt("isapproved") == 0) {
-					student.setUserId(-1);
-					student.setStudentId(-1);
-				}
+				System.out.println(rs.getInt("studentid"));
+//				if (rs.getInt("isapproved") == 0) {
+//					student.setUserId(-1);
+//					student.setStudentId(-1);
+//				}
 			}
 		} catch (SQLException se) {
 			// Handle errors for JDBC

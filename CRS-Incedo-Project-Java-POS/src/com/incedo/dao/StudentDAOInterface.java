@@ -25,7 +25,7 @@ public interface StudentDAOInterface {
 	 * @throws UserNotFoundException
 	 * @throws ApprovalNotDone
 	 */
-	public Student login(String username, String password) throws UserNotFoundException, ApprovalNotDone;
+	public Student login(String username, String password);
 	/**
 	 * lists unproved students
 	 * @return

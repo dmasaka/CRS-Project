@@ -18,15 +18,16 @@ public class StudentService implements StudentInterface {
 		try {
 			Student stud = sdao.login(username, password);
 			if (stud == null) throw new UserNotFoundException();
-			if (stud.getStudentId() == -1) throw new ApprovalNotDone();
+//			if (stud.getStudentId() == -1) throw new ApprovalNotDone();
 			return stud.getStudentId();
 		} catch (UserNotFoundException ex) {
 			System.out.println(ex.getMessage());
 			return 0;
-		} catch (ApprovalNotDone ex) {
-			System.out.println(ex.getMessage());
-			return -1;
-		}
+		} 
+//		catch (ApprovalNotDone ex) {
+//			System.out.println(ex.getMessage());
+//			return -1;
+//		}
 	}
 
 	public void addStudent(String name, String username, String password, String address) {

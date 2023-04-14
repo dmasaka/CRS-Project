@@ -21,10 +21,10 @@ import com.incedo.utils.DBUtils;
 public class CourseDAOImpl implements CourseDAOInterface {
 	private static Connection conn = null;
 	private static PreparedStatement stmt = null;
-	private static List<Course> courses = new ArrayList<Course>();
 
 	@Override
 	public List<Course> listOfCourses() {
+		List<Course> courses = new ArrayList<Course>();
 		// TODO Auto-generated method stub
 		try {
 			conn = DBUtils.getConnection();
