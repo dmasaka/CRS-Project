@@ -17,6 +17,6 @@ import com.incedo.entity.CourseRegistration;
 public interface CourseRegistrationRepository extends JpaRepository<CourseRegistration, Integer> {
 	@Query("Select c from CourseRegistration c where c.studentid = LOWER(?1)")
 	List<CourseRegistration> findCourseRegistrationByStudent(int studentid);
-	@Query("Select c from CourseRegistration c where c.coursecode = LOWER(?1)")
+	@Query("Select c from CourseRegistration c where LOWER(c.coursecode) = LOWER(?1)")
 	List<CourseRegistration> findCourseRegistrationByCode(String courseCode);
 }
