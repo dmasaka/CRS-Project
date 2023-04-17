@@ -113,7 +113,7 @@ public class StudentController {
 	 * @param studid
 	 */
 	@RequestMapping(value = "/approve/{id}", method = RequestMethod.POST)
-	public void approveAll(@PathVariable("id") int studid) {
+	public void approveOne(@PathVariable("id") int studid) {
 		studrepo.approveStudent(studid);
 	}
 }
