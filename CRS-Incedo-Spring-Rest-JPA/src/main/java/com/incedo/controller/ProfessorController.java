@@ -6,6 +6,7 @@ package com.incedo.controller;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,7 +23,7 @@ import com.incedo.repository.ProfessorRepository;
  * @author David Masaka
  *
  */
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/professors")
 public class ProfessorController {
@@ -60,14 +61,17 @@ public class ProfessorController {
 	 * @return Professor object
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
-	public Professor addProfessor(@RequestBody Professor prof) {
+	public Map<String, String> addProfessor(@RequestBody Professor prof) {
 		System.out.println(prof);
+		Map<String, String> resp = new TreeMap<>();
 		try {
-			return profrepo.save(prof);
+			profrepo.save(prof);
+			resp.put("status", "200");
 		} catch (Exception ex) {
 			System.out.println(ex);
-			return null;
+			resp.put("error", "could not save");
 		}
+		return resp;
 	}
 	
 	/**

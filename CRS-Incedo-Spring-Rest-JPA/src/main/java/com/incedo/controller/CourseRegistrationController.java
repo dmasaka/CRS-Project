@@ -6,7 +6,8 @@ package com.incedo.controller;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,28 +17,50 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.incedo.entity.Course;
 import com.incedo.entity.CourseRegistration;
 import com.incedo.repository.CourseRegistrationRepository;
+import com.incedo.repository.CourseRepository;
 
 /**
  * @author David Masaka
  *
  */
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/cr")
 public class CourseRegistrationController {
 	@Autowired
 	CourseRegistrationRepository crrepo;
 	
+	@Autowired
+	CourseRepository crepo;
+	
 	/**
-	 * adds a course registration
+	 * adds a course registration (used by student)
 	 * @param cr
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
-	public CourseRegistration add(@RequestBody CourseRegistration cr) {
-//		cr.setGrade("None");
+	public Map<String, String> add(@RequestBody CourseRegistration cr) {
+		cr.setGrade("None");
+		Map<String, String> map = new TreeMap<>();
+		if (crrepo.findCourseRegistrationByStudentAndCode(cr.getStudentid(), cr.getCoursecode()) == null) {
+			crrepo.save(cr);
+			map.put("status", "200");
+		} else {
+			map.put("error", "Registration already exist");
+		}
+		return map;
+	}
+	
+	/**
+	 * changes a course registration (used by professor)
+	 * @param cr
+	 * @return
+	 */
+	@RequestMapping(value = "/add", method = RequestMethod.PUT, consumes = "application/json")
+	public CourseRegistration change(@RequestBody CourseRegistration cr) {
 		crrepo.save(cr);
 		return cr;
 	}
@@ -64,6 +87,18 @@ public class CourseRegistrationController {
 	public List<CourseRegistration> getRegistrationsByStudent(@PathVariable("studentid") Integer studentid){
 		System.out.println("studentid: "+ studentid);
 		return crrepo.findCourseRegistrationByStudent(studentid);
+	}
+	
+	@RequestMapping(value = "/professor/{profid}", method = RequestMethod.GET, produces = "application/json")
+	public List<CourseRegistration> getRegistrationsByProf(@PathVariable("profid") Integer profid){
+		System.out.println("profid: "+ profid);
+		List<Course> clist = new ArrayList<>();
+		List<CourseRegistration> crlist = new ArrayList<>();
+		clist = crepo.findCoursesByProfessor(profid);
+		for (Course cor: clist) {
+			crlist.addAll(crrepo.findCourseRegistrationByCode(cor.getCourseCode()));
+		}
+		return crlist;
 	}
 	
 	/**

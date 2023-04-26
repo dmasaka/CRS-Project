@@ -1,0 +1,146 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2em auto;
+}
+
+.Container p,.Container label{
+    font-size: 1.5em;
+}
+
+.Container td,.Container th {
+    font-size: 1.5em;
+    padding: 0.5em 1em;
+    text-align: left;
+}
+
+table {
+    width: 100%;
+}
+
+.Container input[type=text],.Container input[type=number]{
+    font-size: 1.5em;
+}
+
+button {
+    font-size: 1.25em;
+}
+
+.Container > h1 {
+    font-size: 3em;
+    margin-top: 0;
+}
+
+.SerCont {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.FormS{
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+}
+
+.FormSin {
+    width: 100%;
+}
+
+.FormSin select {
+    font-size: 1.5em;
+}
+
+.ButSpace button {
+    margin-top: 1em;
+    margin-right: 1em;
+}
+
+.CourseCont {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.CourseCont > div {
+    width: 50%;
+    margin: 0.5em 1em;
+}
+
+.CourseInner {
+    display: flex;
+    justify-content: space-around;
+}
+
+.Grade {
+    width:40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.PayType {
+    width:50%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin: 1em 2em;
+}
+
+.PayType form {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+
+.PayInner {
+    display: flex;
+    justify-content: space-between;
+}
+
+.PayCont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.PayCont p,.PayCont label {
+    font-size: 1.5em;
+    margin-top: 0.5em;
+}
+
+.PayCont input[type=text],.PayCont input[type=number] {
+    font-size: 1.5em;
+}
+
+.PayCont button{
+    margin-top: 0.5em;
+}
+
+.PayCont > p {
+    margin-bottom: 0;
+}
+
+.Logout {
+    margin-left: 1em;
+}
+
+.SerCont td,
+.SerCont th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.SerCont tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.ButTop {
+    margin-top: 1em;
+}

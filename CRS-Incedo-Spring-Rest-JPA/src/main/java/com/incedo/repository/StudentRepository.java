@@ -31,6 +31,9 @@ public interface StudentRepository extends JpaRepository<Student, Integer> {
 	@Query("Select s from Student s where LOWER(s.username) = LOWER(?1) and s.isApproved = true")
 	Student findStudentByUsername(String username);
 	
+	@Query("Select s from Student s where LOWER(s.username) = LOWER(?1)")
+	Student checkStudentByUsername(String username);
+	
 	@Query("select s from Student s where s.isApproved=false")
 	List<Student> listAllUnapproved();
 	

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.incedo.entity.Payment;
+import com.incedo.repository.CourseRegistrationRepository;
 import com.incedo.repository.PaymentRepository;
+import com.incedo.repository.StudentRepository;
 
 /**
  * @author David Masaka
@@ -27,6 +29,9 @@ import com.incedo.repository.PaymentRepository;
 public class PaymentController {
 	@Autowired
 	PaymentRepository prepo;
+	
+	@Autowired
+	CourseRegistrationRepository crrepo;
 	
 	/**
 	 * handles offline payment

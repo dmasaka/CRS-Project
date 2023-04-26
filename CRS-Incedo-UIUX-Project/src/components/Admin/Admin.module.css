@@ -1,0 +1,71 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.SerCont {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+}
+
+.SerCont > div > p {
+    text-align: center;
+}
+
+.SerCont p,.SerCont label {
+    font-size: 1.5em;
+}
+
+.SerCont > div {
+    padding: 1em;
+}
+
+.FormT {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.SerCont button {
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+}
+
+.SerCont > div:nth-child(even) {
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+.FormSin select {
+    margin-bottom: 1em;
+}
+
+.Approval table{
+    border: 2px solid black;
+    padding: 2em;
+}
+
+.Grade td, .Grade th {
+    padding: 0.5em 1em;
+}
+
+.Logout {
+    margin-left: 1em;
+}
+
+.SerCont td,
+.SerCont th,
+.Grade td,
+.Grade th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.SerCont tr:nth-child(even),
+.Grade tr:nth-child(even) {
+    background-color: #dddddd;
+}

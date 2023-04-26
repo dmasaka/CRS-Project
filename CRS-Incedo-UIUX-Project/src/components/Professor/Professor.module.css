@@ -1,0 +1,82 @@
+.Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.SerCont {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Course {
+    width: 100%;
+}
+
+.Grade {
+    width: 100%;
+}
+
+.Course,
+.Grade {
+    padding: 0.5em 0.5em;
+}
+
+.Regs {
+    width: 100%;
+}
+
+table {
+    margin-top: 2em;
+}
+
+td,
+th {
+    text-align: left;
+    font-size: 1.5em;
+}
+
+.SerCont p,
+.SerCont label {
+    font-size: 1.25em;
+}
+
+.SerCont input[type=text],
+.SerCont input[type=number] {
+    font-size: 1.25em;
+}
+
+.FormThing {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+}
+
+.FormSin select {
+    font-size: 1.25em;
+}
+
+.Logout {
+    margin-left: 1em;
+}
+
+.SerCont td,
+.SerCont th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.SerCont tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+.SerCont .Course > p {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.ButSpace {
+    margin-top: 1em;
+}

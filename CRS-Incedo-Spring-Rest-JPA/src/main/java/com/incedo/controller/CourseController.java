@@ -21,7 +21,7 @@ import com.incedo.repository.CourseRepository;
  * @author David Masaka
  *
  */
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/course")
 public class CourseController {

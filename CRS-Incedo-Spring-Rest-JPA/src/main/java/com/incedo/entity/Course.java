@@ -17,7 +17,6 @@ public class Course {
 		this.isOffered = isOffered;
 		this.professorId = professorId;
 	}
-
 	public String getCourseCode() {
 		return courseCode;
 	}

@@ -22,7 +22,7 @@ import com.incedo.repository.AdminRepository;
  * @author David Masaka
  *
  */
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:5173")
 @RestController
 @RequestMapping("/admins")
 public class AdminController {

@@ -1,0 +1,71 @@
+import { createStore } from 'redux'
+
+/**
+ * This is a reducer - a function that takes a current state value and an
+ * action object describing "what happened", and returns a new state value.
+ * A reducer's function signature is: (state, action) => newState
+ *
+ * The Redux state should contain only plain JS objects, arrays, and primitives.
+ * The root state value is usually an object. It's important that you should
+ * not mutate the state object, but return a new object if the state changes.
+ *
+ * You can use any conditional logic you want in a reducer. In this example,
+ * we use a switch statement, but it's not required.
+ */
+
+const initial = { loggedin: false, role: 'student', userid: 0, name:'', username:'' }
+function counterReducer(state = initial, action) {
+  switch (action.type) {
+    case 'userinfo/login':
+      return {loggedin: true, role: action.payload.role, userid: action.payload.userid, name: action.payload.name, username: action.payload.username}
+    case 'userinfo/logout':
+      return initial
+    default:
+      return state
+  }
+}
+
+// Create a Redux store holding the state of your app.
+// Its API is { subscribe, dispatch, getState }.
+export let userstore = createStore(counterReducer)
+
+// You can use subscribe() to update the UI in response to state changes.
+// Normally you'd use a view binding library (e.g. React Redux) rather than subscribe() directly.
+// There may be additional use cases where it's helpful to subscribe as well.
+
+// userstore.subscribe(() => console.log(userstore.getState()))
+
+// The only way to mutate the internal state is to dispatch an action.
+// The actions can be serialized, logged or stored and later replayed.
+// userstore.dispatch({ type: 'counter/incremented' })
+
+// const loginSlice = createSlice({
+//   name: 'userinfo',
+//   initialState: {
+//     loggedin: false,
+//     role: 'student',
+//     userid: 0
+//   },
+//   reducers: {
+//     login: (state, action) => {
+//         console.log('called the login reducer')
+//         state.loggedin = true
+//         state.role = action.payload.role
+//         state.userid = action.payload.userid
+//     },
+//     logout: state => {
+//         console.log('called the logout reducer')
+//         state.loggedin = false
+//         state.role = 'student'
+//         state.userid = 0
+//     }
+//   }
+// })
+
+// export const { login, logout } = loginSlice.actions
+
+// export const store = configureStore({
+//   reducer: loginSlice.reducer
+// })
+
+
