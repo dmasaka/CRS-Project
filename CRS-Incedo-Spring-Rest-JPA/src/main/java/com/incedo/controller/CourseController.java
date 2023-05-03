@@ -5,6 +5,8 @@ package com.incedo.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -21,35 +23,45 @@ import com.incedo.repository.CourseRepository;
  * @author David Masaka
  *
  */
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/course")
 public class CourseController {
 	@Autowired
 	CourseRepository crepo;
-	
+
 	/**
 	 * lists all courses
+	 * 
 	 * @return
 	 */
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
-	public List<Course> getAll(){
+	public List<Course> getAll() {
+		System.out.println("/all getting all courses");
 		return crepo.findAll();
 	}
-	
+
 	/**
 	 * lists all the courses
 	 * @param cr
 	 * @return
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
-	public Course add(@RequestBody Course cr) {
+	public Map<String, String> add(@RequestBody Course cr) {
+		Map<String, String> rmap = new TreeMap<>();
+		try {
+		System.out.println("/add adding " + cr.getCourseCode() + " course");
 		crepo.save(cr);
-		return cr;
+		rmap.put("status", "200");
+		} catch (Exception ex){
+			rmap.put("status", "400");
+		}
+		return rmap;
 	}
-	
+
 	/**
 	 * deletes a course
+	 * 
 	 * @param courseId
 	 * @return
 	 */
@@ -60,14 +72,15 @@ public class CourseController {
 		crepo.deleteAllByIdInBatch(ids);
 		return true;
 	}
-	
+
 	/**
 	 * list courses by professor
+	 * 
 	 * @param profid
 	 * @return
 	 */
 	@RequestMapping(value = "/professor/{profid}", method = RequestMethod.GET, produces = "application/json")
-	public List<Course> byProf(@PathVariable("profid") int profid){
+	public List<Course> byProf(@PathVariable("profid") int profid) {
 		return crepo.findCoursesByProfessor(profid);
 	}
 }

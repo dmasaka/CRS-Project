@@ -83,6 +83,12 @@ button {
     align-items: center;
 }
 
+.GradeCourse {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .PayType {
     width:50%;
     display: flex;

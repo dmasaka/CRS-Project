@@ -9,11 +9,24 @@ export const BasNav = () => {
     <>
       <Navbar bg="info" expand="lg">
         <Container>
+          <Navbar.Brand>
+            <img
+              alt="cap from cap and gown"
+              src="/logo.png"
+              width="30"
+              height="30"
+              className="d-inline-block align-top"
+            />{' '}
+            CRS System
+          </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
+              <LinkContainer to="/">
+                <Nav.Link>Home</Nav.Link>
+              </LinkContainer>
               <LinkContainer to="/register">
-                <Nav.Link>New Registration</Nav.Link>
+                <Nav.Link>Registration</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/password">
                 <Nav.Link>Update Password</Nav.Link>

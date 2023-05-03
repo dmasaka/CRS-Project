@@ -12,13 +12,13 @@ export const Course = () => {
   const [refresh, setRefresh] = useState(true)
   const [profs, setProfs] = useState([])
   useEffect(() => {
-    fetch('http://localhost:8080/course/all')
+    fetch( import.meta.env.VITE_BACK + 'course/all')
       .then(resp => resp.json())
       .then(data => setCourses(data))
   }, [setCourses, refresh])
 
   useEffect(() => {
-    fetch('http://localhost:8080/professors/all')
+    fetch( import.meta.env.VITE_BACK + 'professors/all')
       .then(resp => resp.json())
       .then(data => setProfs(data))
   }, [setProfs])
@@ -26,14 +26,14 @@ export const Course = () => {
 
   const dele = e => {
     console.log(e.target.id)
-    fetch('http://localhost:8080/course/delete/' + e.target.id, { method: "DELETE" })
+    fetch( import.meta.env.VITE_BACK + 'course/delete/' + e.target.id, { method: "DELETE" })
     setRefresh(!refresh)
   }
 
   const adder = e => {
     e.preventDefault()
     console.log("is offered ", isoffered)
-    fetch('http://localhost:8080/course/add',{
+    fetch( import.meta.env.VITE_BACK + 'course/add',{
       method:"POST",
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -46,7 +46,10 @@ export const Course = () => {
       })
     })
     .then(resp => resp.json())
-    .then(data => console.log(data))
+    .then(data => setTimeout(() => {
+      console.log(data)
+      setRefresh(!refresh)
+    }, 2000))
   }
 
   return (

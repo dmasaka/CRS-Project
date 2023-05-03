@@ -30,7 +30,6 @@ export const BasNav = () => {
     }
   }, [])
 
-
   return (
     <>
       <h1 style={{ textAlign: 'center' }}>Student Dashboard</h1>
@@ -39,17 +38,23 @@ export const BasNav = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <LinkContainer to="/student">
+              <LinkContainer to="/">
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/student/register">
                 <Nav.Link>Register</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/student/catalog">
+                <Nav.Link>Catalog</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/student/course">
                 <Nav.Link>Course</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/student/pay">
                 <Nav.Link>Payment</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/student/notification">
+                <Nav.Link>Alerts</Nav.Link>
               </LinkContainer>
             </Nav>
           </Navbar.Collapse>

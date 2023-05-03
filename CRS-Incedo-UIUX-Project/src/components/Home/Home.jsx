@@ -12,7 +12,7 @@ export const Home = () => {
   const navi = useNavigate()
   const login = e => {
     e.preventDefault()
-    fetch('http://localhost:8080/' + role + 's/login', {
+    fetch( import.meta.env.VITE_BACK  + role + 's/login', {
       method:"POST",
       headers: new Headers({
         'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ export const Home = () => {
           navi('/professor/grade')
           break
         case 'admin':
-          navi('/admin')
+          navi('/admin/report')
           break
         default:
           break

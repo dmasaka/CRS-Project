@@ -10,18 +10,22 @@ export const Approval = () => {
   const navi = useNavigate()
   const approveone = e => {
     console.log(e.target.id)
-    fetch('http://localhost:8080/students/approve/' + e.target.id, { method:"POST" })
+    fetch( import.meta.env.VITE_BACK + 'students/approve/' + e.target.id, { method:"POST" })
     navi()
-    setRefresh(!refresh)
+    setTimeout(() => {
+      setRefresh(!refresh)
+    }, 2000);
   }
   const approveall = e => {
-    fetch('http://localhost:8080/students/approveall', { method:"POST" })
-    setRefresh(!refresh)
+    fetch( import.meta.env.VITE_BACK + 'students/approveall', { method:"POST" })
+    setTimeout(() => {
+      setRefresh(!refresh)
+    }, 2000);
   }
 
   useEffect(() => {
     console.log('useeffect')
-    fetch('http://localhost:8080/students/unapproved')
+    fetch( import.meta.env.VITE_BACK + 'students/unapproved')
       .then(resp => resp.json())
       .then(data => setUnapprove(data))
   }, [setUnapprove, refresh])

@@ -2,13 +2,26 @@ import React, { useState } from 'react'
 import styles from '../Student.module.css'
 import { BasNav } from './BasNav'
 import { Button, Form } from 'react-bootstrap'
-import { redirect } from 'react-router-dom'
+import { userstore } from '../../../redux/store'
 
 export const Register = () => {
     //name, username, password, address, semester, branch
     const [semester, setSemester] = useState(0)
+    const nstore = userstore.getState()
     let sub = e => {
         e.preventDefault()
+        fetch(import.meta.env.VITE_BACK + '/students/semester', {
+            method:'POST',
+            headers: new Headers({
+                'Content-Type':'application/json'
+            }),
+            body: JSON.stringify({
+                studentid: nstore.userid,
+                semester: semester
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => console.log(data))
     }
     return (
         <>

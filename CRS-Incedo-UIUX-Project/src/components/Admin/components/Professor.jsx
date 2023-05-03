@@ -18,17 +18,17 @@ export const Professor = () => {
   const [doj, setDoj] = useState('')
   //name, username, password, address, department, designation, doj
   useEffect(() => {
-    fetch('http://localhost:8080/professors/all')
+    fetch( import.meta.env.VITE_BACK + 'professors/all')
       .then(resp => resp.json())
       .then(data => setProfs(data))
-    fetch('http://localhost:8080/course/all')
+    fetch( import.meta.env.VITE_BACK + 'course/all')
       .then(resp => resp.json())
       .then(data => setCourses(data))
   }, [setProfs, setCourses])
 
   const register = e => {
     e.preventDefault()
-    fetch('http://localhost:8080/professors/add', {
+    fetch( import.meta.env.VITE_BACK + 'professors/add', {
       method:"POST",
       headers: new Headers({
         'Content-Type': 'application/json'

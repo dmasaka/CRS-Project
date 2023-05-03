@@ -10,7 +10,15 @@ public class Notification {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int notificationId;
+	private int studentid;
 	private int notificationType;
+	
+	public Notification() {};
+
+	public Notification(int studentid, int notificationType) {
+		this.studentid = studentid;
+		this.notificationType = notificationType;
+	}
 
 	public int getNotificationId() {
 		return notificationId;
@@ -18,6 +26,14 @@ public class Notification {
 
 	public void setNotificationId(int notificationId) {
 		this.notificationId = notificationId;
+	}
+
+	public int getStudentid() {
+		return studentid;
+	}
+
+	public void setStudentid(int studentid) {
+		this.studentid = studentid;
 	}
 
 	public int getNotificationType() {

@@ -8,7 +8,7 @@ export const Course = () => {
     const nstore = userstore.getState()
     const [regs, setRegs] = useState([])
     useEffect(() => {
-        fetch('http://localhost:8080/cr/professor/' + nstore.userid)
+        fetch( import.meta.env.VITE_BACK + 'cr/professor/' + nstore.userid)
             .then(resp => resp.json())
             .then(data => setRegs(data))
     }, [setRegs])

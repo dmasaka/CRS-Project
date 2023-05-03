@@ -37,7 +37,7 @@ export const BasNav = () => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <LinkContainer to="/admin">
+              <LinkContainer to="/">
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/admin/report">

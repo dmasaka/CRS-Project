@@ -16,5 +16,5 @@ import com.incedo.entity.Payment;
  */
 public interface PaymentRepository extends JpaRepository<Payment, Integer> {
 	@Query("select p from Payment p where p.studentId = ?1")
-	List<Payment> findPaymentByStudent(int studentid);
+	Payment findPaymentByStudent(int studentid);
 }

@@ -8,14 +8,14 @@ export const Report = () => {
   const [studid, setStudid] = useState(0)
   const [grades, setGrades] = useState([])
   useEffect(() => {
-    fetch('http://localhost:8080/students/all')
+    fetch( import.meta.env.VITE_BACK + 'students/all')
       .then(resp => resp.json())
       .then(data => setStuds(data))
   }, [setStuds])
 
 
   const catchem = e => {
-    fetch('http://localhost:8080/cr/student/' + studid)
+    fetch( import.meta.env.VITE_BACK + 'cr/student/' + studid)
       .then(resp => resp.json())
       .then(data => { setGrades(data) })
     e.preventDefault()

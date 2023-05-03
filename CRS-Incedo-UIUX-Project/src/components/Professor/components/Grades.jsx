@@ -14,7 +14,7 @@ export const Grades = () => {
     const [regs, setRegs] = useState([{ 'coursecode': 'FUN111', 'studentid': 2333, 'grade': 'A+' }])
     useEffect(() => {
         const nstore = userstore.getState()
-        fetch('http://localhost:8080/cr/professor/' + nstore.userid)
+        fetch( import.meta.env.VITE_BACK + 'cr/professor/' + nstore.userid)
             .then(resp => resp.json())
             .then(data => setRegs(data))
     }, [setRegs, refresh])
@@ -33,14 +33,16 @@ export const Grades = () => {
         e.preventDefault()
         const old = regs.filter(item => item.coursecode === coursec && item.studentid == studentidc)[0]
         const ncr = {...old, grade: gradec}
-        fetch('http://localhost:8080/cr/add', {
+        fetch( import.meta.env.VITE_BACK + 'cr/add', {
             method: "PUT",
             headers: new Headers({
                 'Content-Type': 'application/json'
             }),
             body: JSON.stringify(ncr)
         })
-        .then(setRefresh(!refresh))
+        .then(setTimeout(() => {
+            setRefresh(!refresh)
+        }, 2000))
     }
 
     return (

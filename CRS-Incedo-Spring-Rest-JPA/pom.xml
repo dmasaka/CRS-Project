@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.incedo</groupId>
-	<artifactId>Demo-Incedo-Spring-Rest-JPA-Practice</artifactId>
+	<artifactId>CRS-Incedo-Spring-Rest-JPA</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Demo-Incedo-Spring-Rest-JPA-Practice</name>
+	<name>CRS-Incedo-Spring-Rest-JPA</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
 		<java.version>11</java.version>
@@ -89,6 +89,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>Demo-Project</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.asciidoctor</groupId>

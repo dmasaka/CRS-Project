@@ -14,10 +14,11 @@ import { Report } from './components/Admin/components/Report'
 import { Professor as AProfessor } from './components/Admin/components/Professor'
 import { Course as ACourse } from './components/Admin/components/Course'
 import { Approval } from './components/Admin/components/Approval'
-import { About } from './components/Home/components/About'
 import { Home } from './components/Home/Home'
 import { Password } from './components/Home/components/Password'
 import { Register } from './components/Home/components/Register'
+import { Catalog } from './components/Student/components/Catalog'
+import { Not } from './components/Student/components/Not'
 
 
 function App() {
@@ -29,6 +30,8 @@ function App() {
         <Routes>
           <Route path="/student/course" element={<Course />} />
           <Route path="/student/pay" element={<Pay />} />
+          <Route path="/student/notification" element={<Not />} />
+          <Route path="/student/catalog" element={<Catalog />} />
           <Route path="/student/register" element={<SRegister />} />
           <Route path="/student" element={<Student />} />
           <Route path="/professor/grade" element={<Grades />} />

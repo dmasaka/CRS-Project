@@ -23,7 +23,7 @@ import com.incedo.repository.ProfessorRepository;
  * @author David Masaka
  *
  */
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/professors")
 public class ProfessorController {
@@ -36,7 +36,7 @@ public class ProfessorController {
 	 */
 	@RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json")
 	public List<Professor> getAllProfessors(){
-		System.out.println(profrepo.findAll());
+		System.out.println("/all getting all professors");
 		return profrepo.findAll();
 	}
 	
@@ -48,6 +48,7 @@ public class ProfessorController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = "application/json")
 	public Professor login(@RequestBody Map<String, String> payload) {
+		System.out.println("/login logging in professor " + payload.get("username"));
 		Professor prof = profrepo.findProfessorByUsername(payload.get("username"));
 		if(prof != null && prof.getPassword().equals(payload.get("password"))) {
 			return prof;
@@ -62,16 +63,63 @@ public class ProfessorController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
 	public Map<String, String> addProfessor(@RequestBody Professor prof) {
-		System.out.println(prof);
+		System.out.println("/add adding professor " + prof.toString());
 		Map<String, String> resp = new TreeMap<>();
-		try {
-			profrepo.save(prof);
-			resp.put("status", "200");
-		} catch (Exception ex) {
-			System.out.println(ex);
-			resp.put("error", "could not save");
+		if (profrepo.findProfessorByUsername(prof.getUsername()) == null) {
+			try {
+				profrepo.save(prof);
+				resp.put("status", "200");
+			} catch (Exception ex) {
+				System.out.println(ex);
+				resp.put("status", "500");
+			}
+		} else {
+			resp.put("status", "403");
+			resp.put("err", "username already exists");
 		}
 		return resp;
+	}
+	
+	/**
+	 * add Professor
+	 * @param prof
+	 * @return Professor object
+	 */
+	@RequestMapping(value = "/change", method = RequestMethod.PUT, produces = "application/json")
+	public Map<String, String> changeProfessor(@RequestBody Professor prof) {
+		System.out.println("/change change to professor " + prof.toString());
+		Map<String, String> resp = new TreeMap<>();
+		if (profrepo.findProfessorByUsername(prof.getUsername()) != null) {
+			try {
+				profrepo.save(prof);
+				resp.put("status", "200");
+			} catch (Exception ex) {
+				System.out.println(ex);
+				resp.put("status", "500");
+			}
+		} else {
+			resp.put("status", "403");
+			resp.put("err", "user does not exist");
+		}
+		return resp;
+	}
+	
+	@RequestMapping(value = "/password", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
+	public Map<String, String> changePassword(@RequestBody Map<String, String> payload){
+		System.out.println("/password changing password of professor " + payload.get("username"));
+		Map<String, String> rmap = new TreeMap<>();
+		String username = payload.get("username");
+		String password = payload.get("password");
+		String npassword = payload.get("newpassword");
+		Professor prof = profrepo.findProfessorByUsername(username);
+		if (prof.getPassword().equals(password)) {
+			prof.setPassword(npassword);
+			profrepo.save(prof);
+			rmap.put("status", "200");
+			return rmap;
+		}
+		rmap.put("status", "408");
+		return rmap;
 	}
 	
 	/**
@@ -81,7 +129,7 @@ public class ProfessorController {
 	 */
 	@RequestMapping(value = "/delete/{profid}", method = RequestMethod.DELETE)
 	public boolean deleteProfessor(@PathVariable("profid") Integer prof) {
-		System.out.println(prof);
+		System.out.println("/delete deleting professor with id "+ prof.toString());
 		List<Integer> nums = new ArrayList<>();
 		nums.add(prof);
 		try {

@@ -23,7 +23,7 @@ import com.incedo.repository.StudentRepository;
  * @author David Masaka
  *
  */
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/pay")
 public class PaymentController {
@@ -38,12 +38,14 @@ public class PaymentController {
 	 * @param payload
 	 * @return payment
 	 */
-	@RequestMapping(value = "/offline", method = RequestMethod.POST, produces = "application/json")
-	public Payment offPay(@RequestBody Map<String, Object> payload) {
-		if (Integer.compare((int) payload.get("checkNumber"), 0) == 0) return null;
+	@RequestMapping(value = "/offline", method = RequestMethod.POST, consumes = "application/json")
+	public Payment offPay(@RequestBody Map<String, String> payload) {
+		System.out.println(payload);
+		if (Integer.compare((int) Integer.parseInt(payload.get("checkNumber")), 0) == 0) return null;
 		if (payload.get("bankName").equals("None")) return null;
-		Payment npay = new Payment((int) payload.get("studentId"), "None", 100, true);
-		return prepo.save(npay);
+		Payment pay = prepo.findPaymentByStudent(Integer.parseInt(payload.get("studentId")));
+		pay.setAmount(pay.getAmount() - Float.parseFloat(payload.get("amount")));
+		return prepo.save(pay);
 	}
 	
 	/**
@@ -51,12 +53,14 @@ public class PaymentController {
 	 * @param payload
 	 * @return payment
 	 */
-	@RequestMapping(value = "/online", method = RequestMethod.POST, produces = "application/json")
-	public Payment onPay(@RequestBody Map<String, Object> payload) {
-		if (Integer.compare((int) payload.get("cardNumber"), 0) == 0) return null;
+	@RequestMapping(value = "/online", method = RequestMethod.POST, consumes = "application/json")
+	public Payment onPay(@RequestBody Map<String, String> payload) {
+		System.out.println(payload);
+		if (Integer.compare((int) Integer.parseInt(payload.get("cardNumber")), 0) == 0) return null;
 		if (payload.get("cardType").equals("None")) return null;
-		Payment npay = new Payment((int) payload.get("studentId"), "None", 100, true);
-		return prepo.save(npay);
+		Payment pay = prepo.findPaymentByStudent(Integer.parseInt(payload.get("studentId")));
+		pay.setAmount(pay.getAmount() - Float.parseFloat(payload.get("amount")));
+		return prepo.save(pay);
 	}
 	
 	/**
@@ -65,7 +69,7 @@ public class PaymentController {
 	 * @return lsit of payments
 	 */
 	@RequestMapping(value = "/student/{studentid}", method = RequestMethod.GET, produces = "application/json")
-	public List<Payment> listAll(@PathVariable("studentid") int studentid){
+	public Payment listAll(@PathVariable("studentid") int studentid){
 		return prepo.findPaymentByStudent(studentid);
 	}
 

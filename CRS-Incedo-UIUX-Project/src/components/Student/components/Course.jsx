@@ -15,9 +15,9 @@ export const Course = () => {
         console.log('useeffect course')
         const fetchem = async () => {
             const nstore = userstore.getState()
-            const crs = await (await fetch("http://localhost:8080/cr/student/" + nstore.userid)).json()
+            const crs = await (await fetch( import.meta.env.VITE_BACK + 'cr/student/' + nstore.userid)).json()
             setCourses(crs)
-            const cable = await (await fetch('http://localhost:8080/course/all')).json()
+            const cable = await (await fetch( import.meta.env.VITE_BACK + 'course/all')).json()
             setAble(cable)
         }
         fetchem()
@@ -25,7 +25,7 @@ export const Course = () => {
 
     const add = e => {
         e.preventDefault();
-        fetch('http://localhost:8080/cr/add', {
+        fetch( import.meta.env.VITE_BACK + 'cr/add', {
             method: "POST",
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -47,7 +47,7 @@ export const Course = () => {
         e.preventDefault()
         courses.forEach(item => {
             if (item.coursecode === course) {
-                fetch('http://localhost:8080/cr/delete/' + item.courseregid, { method: "DELETE" })
+                fetch( import.meta.env.VITE_BACK + 'cr/delete/' + item.courseregid, { method: "DELETE" })
                 .then(
                     setCourses(prev => ([...prev.slice(0,prev.findIndex(item => item.coursecode == course)), ...prev.slice(prev.findIndex(item => item.coursecode == course) + 1)]))
                 )

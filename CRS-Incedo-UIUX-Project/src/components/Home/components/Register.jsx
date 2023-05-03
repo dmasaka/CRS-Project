@@ -12,9 +12,11 @@ export const Register = () => {
     const [address, setAddress] = useState('')
     const [semester, setSemester] = useState(0)
     const [branch, setBranch] = useState('')
+    const [errbar, setErrbar] = useState('')
     let sub = e => {
         e.preventDefault()
-        fetch("http://localhost:8080/students/add", {
+        if (password === pass2){
+        fetch( import.meta.env.VITE_BACK + 'students/add', {
             method: "POST",
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -30,6 +32,9 @@ export const Register = () => {
         })
         .then(resp => resp.json())
         .then(data => console.log(data))
+    } else {
+        setErrbar("Passwords do not match")
+    }
         // redirect('/student')
     }
     return (
@@ -39,6 +44,7 @@ export const Register = () => {
                 {/* use the semester registration */}
                 <div className={styles.SerCont}>
                     <div>
+                    { errbar !== '' && <p>{errbar}</p>}
                         <Form className={styles.FormSin}>
                             <Form.Group className="mb-3" controlId="formBasicText">
                                 <Form.Label>Name</Form.Label>
